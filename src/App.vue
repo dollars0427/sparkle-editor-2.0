@@ -1,15 +1,18 @@
 <template>
   <div id="app">
+    <Toolbar />
     <Editor />
   </div>
 </template>
 
 <script>
-import Editor from './components/Editor.vue'
+import Toolbar from './components/Toolbar.vue';
+import Editor from './components/Editor.vue';
 
 export default {
   name: 'App',
   components: {
+    Toolbar,
     Editor
   }
 }
@@ -20,8 +23,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
