@@ -1,10 +1,12 @@
 <template>
-  <div class="editor">
+  <div class="editor" :style="style">
     <editor-content :editor="editor" />
   </div>
 </template>
 
 <script>
+import Themes from '../default_themes.json';
+
 import { mapState, mapActions } from 'vuex';
 import { Editor, EditorContent } from '@tiptap/vue-2';
 import StarterKit from '@tiptap/starter-kit';
@@ -14,7 +16,21 @@ export default {
   components: {
     EditorContent,
   },
+  data(){
+    return {
+      'currentTheme': '',
+      'style': '',
+    }
+  },
   methods: {
+    loadDefaultTheme(){
+      const defaultTheme = Themes['themes'][0];
+      const bgImage = defaultTheme.imageName;
+      const textColor = defaultTheme.fontColor;
+
+      this.currentTheme = defaultTheme['id'];
+      this.style = `background-image: url('background/${bgImage}');color: ${textColor}`;
+    },
     ...mapActions(['updateEditor'])
   },
   mounted() {
@@ -24,6 +40,7 @@ export default {
         StarterKit,
       ],
     });
+    this.loadDefaultTheme();
     this.updateEditor(editor);
   },
   beforeUnmount() {
@@ -40,5 +57,6 @@ export default {
 <style scoped lang="scss">
 .editor{
   height: 90vh;
+  padding-left: 10px
 }
 </style>

@@ -36,7 +36,6 @@ export default {
 <style scoped lang="scss">
 .editor-toolbar{
   border: 1px solid #ddd;
-  margin-bottom: 30px;
 
   .ProseMirror{
     height: 90vh;
